@@ -15,9 +15,18 @@ while True:
         fileNames.append(fileName)
 
 print(fileNames)
-YN = input("Are these the right files? Y/N: ")
+YN = input("Are these the right files? Y/N (standard Y):")
 if YN == "n" or YN == "N":
     exit()
+	
+com = 'updated by UpGit.py - THector99 github'
+print("standard commit comment: " + com)
+YN = input("Do you want to apply a custom commit comment? Y/N (standard N):")
+
+if YN == "Y" or YN == "y":
+        com = input("custom commit: ")
+
+time.sleep(.100)
     
 keyboard.press(Key.cmd)
 keyboard.press('r')
@@ -36,40 +45,18 @@ keyboard.type("cd "+Path)
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
-time.sleep(1)
+time.sleep(.100)
 keyboard.type("git pull")
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
+time.sleep(3)
+
 i=0
 while i < len(fileNames):
     keyboard.type("git add " + fileNames[i])
     keyboard.press(Key.enter)
     keyboard.release(Key.enter)
     i = i + 1
-
-time.sleep(.100)
-
-keyboard.press(Key.alt)
-keyboard.press(Key.tab)
-
-keyboard.release(Key.alt)
-keyboard.release(Key.tab)
-
-time.sleep(.100)
-
-com = 'updatet by UpGit.py - THector99 github'
-YN = input("Do you want to apply a custom commit comment? Y/N: ")
-
-if YN == "Y" or YN == "y":
-        com = input("custom commit: ")
-
-time.sleep(.100)
-
-keyboard.press(Key.alt)
-keyboard.press(Key.tab)
-
-keyboard.release(Key.alt)
-keyboard.release(Key.tab)
 
 time.sleep(.100)
 

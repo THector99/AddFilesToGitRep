@@ -1,6 +1,7 @@
 # AddFilesToGitRep
 This python/exe file will quickly make posting to your own repository easy and less painfull.
-It uses the keyboard library to open a commandprompt and type all the stuff for you thats needed to upload to your git repository.
+It uses the keyboard library to open a commandprompt and type all the stuff for you thats needed to upload to your git repository.</br>
+This program is capable of uploading all kind of files and even filemaps, It is however capital sensitive so always check if you have spelled the names right.
 
 # Steps:
 ## Step 1: Put in the file names and/or map names.

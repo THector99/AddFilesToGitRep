@@ -83,15 +83,15 @@ keyboard.type('git push')
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
-time.sleep(5)
-
-time.sleep(.100)
-keyboard.press(Key.alt)
-keyboard.press(Key.tab)
-
-keyboard.release(Key.alt)
-keyboard.release(Key.tab)
-time.sleep(.100)
+#time.sleep(5)
+#
+#time.sleep(.100)
+#keyboard.press(Key.alt)
+#keyboard.press(Key.tab)
+#
+#keyboard.release(Key.alt)
+#keyboard.release(Key.tab)
+#time.sleep(.100)
 #comment the next session out if you use heroku or change the git push heroku to something you want to push to other than your own master branch
 #YN = input("Do you want to push to heroku master branch? Y/N: ")
 #

@@ -15,13 +15,13 @@ while True:
         fileNames.append(fileName)
 
 print(fileNames)
-YN = input("Are these the right files? Y/N (standard Y):")
+YN = input("Are these the right files? Y/N (press ENTER for Y): ")
 if YN == "n" or YN == "N":
     exit()
 	
 com = 'updated by UpGit.py - THector99 github'
 print("standard commit comment: " + com)
-YN = input("Do you want to apply a custom commit comment? Y/N (standard N):")
+YN = input("Do you want to apply a custom commit comment? Y/N (press ENTER for N): ")
 
 if YN == "Y" or YN == "y":
         com = input("custom commit: ")

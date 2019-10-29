@@ -36,7 +36,7 @@ keyboard.type("cd "+Path)
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)
 
-time.sleep(3)
+time.sleep(1)
 keyboard.type("git pull")
 keyboard.press(Key.enter)
 keyboard.release(Key.enter)

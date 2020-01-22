@@ -1,96 +1,58 @@
-from pynput.keyboard import Key, Controller
+import subprocess
 import time
 import os
+from subprocess import check_output
 
-keyboard = Controller()
-Path = __file__ #the path file of the file
-Path = Path[:-8]
-fileNames = []
-print("type done to continue or give an ENTER")
-while True:
-    fileName = input("Give the filename: ")
-    if fileName == "done" or fileName == "":
+f=open("111.ikbeneencalibbestand", "w")
+f.close()
+
+p = check_output("git status", shell=True).decode()
+p = p.split("\t")
+i = 0
+t = 0
+OnlyOne = False
+p[len(p)-1] = p[len(p)-1].split("no")[0]
+while t == 0:
+    if p[i] == "111.ikbeneencalibbestand\n\n":
+        OnlyOne = True
         break
-    else:
-        fileNames.append(fileName)
-
-print(fileNames)
-YN = input("Are these the right files? Y/N (press ENTER for Y): ")
-if YN == "n" or YN == "N":
-    exit()
-	
-com = 'updated by UpGit.py - THector99 github'
-print("standard commit comment: " + com)
-YN = input("Do you want to apply a custom commit comment? Y/N (press ENTER for N): ")
-
-if YN == "Y" or YN == "y":
-        com = input("custom commit: ")
-
-time.sleep(.100)
+    elif p[i] == "111.ikbeneencalibbestand\n":
+        t = i
     
-keyboard.press(Key.cmd)
-keyboard.press('r')
+    i = i+1
+if OnlyOne == False:
+    FileArray = []
+    t = t+1
+    while t < len(p):
+        FileArray.append((p[t]).split("\n")[0])
+        t = t+1
 
-keyboard.release('r')
-keyboard.release(Key.cmd)
+    i=0
+    while i < len(FileArray):
+        check_output("git add "+FileArray[i], shell=True).decode()
+        i = i+1
 
-time.sleep(.100)
+    check_output('git commit -m "Updated by UpGit"', shell=True).decode()
 
-keyboard.type("cmd")
-keyboard.press(Key.enter)
-keyboard.release(Key.enter)
+    check_output('git push', shell=True).decode()
+os.remove("111.ikbeneencalibbestand")
 
-time.sleep(.200)
-keyboard.type("cd "+Path)
-keyboard.press(Key.enter)
-keyboard.release(Key.enter)
-
-time.sleep(.100)
-keyboard.type("git pull")
-keyboard.press(Key.enter)
-keyboard.release(Key.enter)
-time.sleep(3)
-
-i=0
-while i < len(fileNames):
-    keyboard.type("git add " + fileNames[i])
-    keyboard.press(Key.enter)
-    keyboard.release(Key.enter)
-    i = i + 1
-
-time.sleep(.100)
-
-keyboard.type('git commit -m ' + '"' + com + '"')
-keyboard.press(Key.enter)
-keyboard.release(Key.enter)
-
-time.sleep(2)
-
-keyboard.type('git push')
-keyboard.press(Key.enter)
-keyboard.release(Key.enter)
-
-#time.sleep(5)
-#
-#time.sleep(.100)
-#keyboard.press(Key.alt)
-#keyboard.press(Key.tab)
-#
-#keyboard.release(Key.alt)
-#keyboard.release(Key.tab)
-#time.sleep(.100)
-#comment the next session out if you use heroku or change the git push heroku to something you want to push to other than your own master branch
-#YN = input("Do you want to push to heroku master branch? Y/N: ")
-#
-#if YN == "Y" or YN == "y":
-#        time.sleep(.100)
-#        keyboard.press(Key.alt)
-#        keyboard.press(Key.tab)
-#
-#        keyboard.release(Key.alt)
-#        keyboard.release(Key.tab)
-#        time.sleep(.100)
-#        keyboard.type('git push heroku master')
-#        keyboard.press(Key.enter)
-#        keyboard.release(Key.enter)
-#
+p = check_output("git status", shell=True).decode()
+p = p.split("\t")
+end = False
+i = 1
+o = []
+while end == False and i < len(p):
+    print(i)
+    try:
+        if p[i][0] == "d" and p[i][1] == "e" and p[i][2] == "l":
+            o = ((p[i]).split(" "))[4].split("\n")
+            check_output("git rm -r " + o[0], shell=True).decode()
+            if len(o) == 3:
+                end = True
+    except:
+        print("did not succeed in deleting file: "+ o[0] + "or it has already been added to the delete task")
+    i = i +1
+if len(o)>0:
+    check_output('git commit -m "Deleted some files"', shell=True).decode()
+    check_output('git push', shell=True).decode()

@@ -68,3 +68,6 @@ while (endRM == False or endUP==False) and i < len(p):
 if len(o)>0:
     check_output('git commit -m "Update by UpGit made by Tim Dons"', shell=True).decode()
     check_output('git push', shell=True).decode()
+
+print("Done... Press ENTER to close")
+input()

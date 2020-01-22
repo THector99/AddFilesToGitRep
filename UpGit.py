@@ -32,24 +32,25 @@ if OnlyOne == False:
         check_output("git add "+FileArray[i], shell=True).decode()
         i = i+1
 
-    check_output('git commit -m "Updated by UpGit"', shell=True).decode()
+    check_output('git commit -m "Updated by UpGit made by Tim Dons"', shell=True).decode()
 
     check_output('git push', shell=True).decode()
 os.remove("111.ikbeneencalibbestand")
 
 p = check_output("git status", shell=True).decode()
 p = p.split("\t")
-end = False
+endRM = False
+endUP = False
 i = 1
 o = []
-while end == False and i < len(p):
+while (endRM == False or endUP==False) and i < len(p):
     print(1)
     try:
         if p[i][0] == "d" and p[i][1] == "e" and p[i][2] == "l":
             o = ((p[i]).split(" "))[4].split("\n")
             check_output("git rm -r " + o[0], shell=True).decode()
             if len(o) == 3:
-                end = True
+                endRM = True
     except:
         print("Failed in deleting file: "+ o[0] + "or it has already been added to the delete task")
 
@@ -57,11 +58,13 @@ while end == False and i < len(p):
         if p[i][0] == "m" and p[i][1] == "o" and p[i][2] == "d":
             o = ((p[i]).split(" "))[3].split("\n")
             check_output("git add " + o[0], shell=True).decode()
+            if len(o) == 3:
+                endUP = True
             
     except:
         print("Failed in updating file: "+o[0]+"or it has already been added to the commit task")
         
     i = i +1
 if len(o)>0:
-    check_output('git commit -m "Deleted some files"', shell=True).decode()
+    check_output('git commit -m "Update by UpGit made by Tim Dons"', shell=True).decode()
     check_output('git push', shell=True).decode()

@@ -21,6 +21,7 @@ while t == 0:
     
     i = i+1
 if OnlyOne == False:
+    print("Adding the new files to the commit stage")
     FileArray = []
     t = t+1
     while t < len(p):
@@ -31,9 +32,10 @@ if OnlyOne == False:
     while i < len(FileArray):
         check_output("git add "+FileArray[i], shell=True).decode()
         i = i+1
-
+    print("Commiting the new files")
     check_output('git commit -m "Updated by UpGit made by Tim Dons"', shell=True).decode()
 
+    print("Pushing the new files to the repositorie")
     check_output('git push', shell=True).decode()
 os.remove("111.ikbeneencalibbestand")
 
@@ -51,6 +53,7 @@ while (endRM == False or endUP==False) and i < len(p):
             check_output("git rm -r " + o[0], shell=True).decode()
             if len(o) == 3:
                 endRM = True
+            print("Deleting file: "+o[0])
     except:
         print("Failed in deleting file: "+ o[0] + " or it has already been added to the delete task")
 
@@ -60,12 +63,13 @@ while (endRM == False or endUP==False) and i < len(p):
             check_output("git add " + o[0], shell=True).decode()
             if len(o) == 3:
                 endUP = True
-            
+            print("Updating file: "+o[0])
     except:
         print("Failed in updating file: "+o[0]+" or it has already been added to the commit task")
         
     i = i +1
 if len(o)>0:
+    print("pushing to the repositorie")
     check_output('git commit -m "Update by UpGit made by Tim Dons"', shell=True).decode()
     check_output('git push', shell=True).decode()
 

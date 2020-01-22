@@ -43,7 +43,7 @@ end = False
 i = 1
 o = []
 while end == False and i < len(p):
-    print(i)
+    print(1)
     try:
         if p[i][0] == "d" and p[i][1] == "e" and p[i][2] == "l":
             o = ((p[i]).split(" "))[4].split("\n")
@@ -51,7 +51,16 @@ while end == False and i < len(p):
             if len(o) == 3:
                 end = True
     except:
-        print("did not succeed in deleting file: "+ o[0] + "or it has already been added to the delete task")
+        print("Failed in deleting file: "+ o[0] + "or it has already been added to the delete task")
+
+    try:
+        if p[i][0] == "m" and p[i][1] == "o" and p[i][2] == "d":
+            o = ((p[i]).split(" "))[3].split("\n")
+            check_output("git add " + o[0], shell=True).decode()
+            
+    except:
+        print("Failed in updating file: "+o[0]+"or it has already been added to the commit task")
+        
     i = i +1
 if len(o)>0:
     check_output('git commit -m "Deleted some files"', shell=True).decode()

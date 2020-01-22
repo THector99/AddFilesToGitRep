@@ -33,7 +33,7 @@ if OnlyOne == False:
         check_output("git add "+FileArray[i], shell=True).decode()
         i = i+1
     print("Commiting the new files")
-    check_output('git commit -m "Updated by UpGit made by Tim Dons"', shell=True).decode()
+    check_output('git commit -m "Updated by UpGit, made by THector99"', shell=True).decode()
 
     print("Pushing the new files to the repositorie")
     check_output('git push', shell=True).decode()
@@ -70,7 +70,7 @@ while (endRM == False or endUP==False) and i < len(p):
     i = i +1
 if len(o)>0:
     print("pushing to the repositorie")
-    check_output('git commit -m "Update by UpGit made by Tim Dons"', shell=True).decode()
+    check_output('git commit -m "Updated by UpGit, made by THector99"', shell=True).decode()
     check_output('git push', shell=True).decode()
 
 print("Done... Press ENTER to close")

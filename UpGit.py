@@ -52,7 +52,7 @@ while (endRM == False or endUP==False) and i < len(p):
             if len(o) == 3:
                 endRM = True
     except:
-        print("Failed in deleting file: "+ o[0] + "or it has already been added to the delete task")
+        print("Failed in deleting file: "+ o[0] + " or it has already been added to the delete task")
 
     try:
         if p[i][0] == "m" and p[i][1] == "o" and p[i][2] == "d":
@@ -62,7 +62,7 @@ while (endRM == False or endUP==False) and i < len(p):
                 endUP = True
             
     except:
-        print("Failed in updating file: "+o[0]+"or it has already been added to the commit task")
+        print("Failed in updating file: "+o[0]+" or it has already been added to the commit task")
         
     i = i +1
 if len(o)>0:
